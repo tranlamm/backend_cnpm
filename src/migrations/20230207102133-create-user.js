@@ -18,26 +18,26 @@ module.exports = {
         } 
       },
       fullname: {
-        type: Sequelize.STRING(45),
+        type: Sequelize.STRING,
         allowNull: false
       },
       email: {
-        type: Sequelize.STRING(45),
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
       phone_number: {
-        type: Sequelize.STRING(45)
+        type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING(45)
+        type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING(45),
+        type: Sequelize.STRING,
         allowNull: false
       },
       total_order: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

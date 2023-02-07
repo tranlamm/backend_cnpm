@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(45),
+        type: Sequelize.STRING,
         allowNull: false
       }
     });
