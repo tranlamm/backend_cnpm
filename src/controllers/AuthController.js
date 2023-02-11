@@ -63,6 +63,7 @@ const authController = {
                 phone_number: req.body.phone_number,
                 address: req.body.address,
                 password: hashed,
+                avatar: req.body.avatar
             })
 
             return res.status(200).json({
