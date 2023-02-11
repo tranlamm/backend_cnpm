@@ -3,16 +3,44 @@ import emailValidator from "email-validator";
 import jwt from "jsonwebtoken";
 import db from '../models/index.js';
 
-const userController = {
+const authController = {
+    generateAccessToken(user) {
+        return jwt.sign(
+            {
+                id: user.ID_User,
+                role: user.ID_Role,
+            }, 
+            process.env.JWT_ACCESS_KEY,
+            {
+                expiresIn: "3d"
+            }
+        );
+    },
+ 
+    generateRefreshToken(user) {
+        return jwt.sign(
+            {
+                id: user.ID_User,
+                role: user.ID_Role,
+            }, 
+            process.env.JWT_REFRESH_KEY,
+            {
+                expiresIn: "365d"
+            }
+        );
+    },
+
     async register(req, res) {
         try {
-            if (!req.body.fullname || !req.body.email || !req.body.password)
+            if (!req.body.fullname || !req.body.email || !req.body.password || !req.body.phone_number)
                 return res.status(500).json({
+                    error: true,
                     message: 'Missing required field'
                 })
             
             if (!emailValidator.validate(req.body.email))
                 return res.status(500).json({
+                    error: true,
                     message: 'Email is invalid'
                 })
 
@@ -22,6 +50,7 @@ const userController = {
 
             if (dbUser)
                 return res.status(500).json({
+                    error: true,
                     message: 'Email is already existed'
                 })
 
@@ -37,6 +66,7 @@ const userController = {
             })
 
             return res.status(200).json({
+                error: false,
                 user,
                 message: 'Register Successfully'
             });
@@ -45,36 +75,11 @@ const userController = {
         }
     },
 
-    generateAccessToken(user) {
-       return jwt.sign(
-            {
-                id: user.ID_User,
-                role: user.ID_Role,
-            }, 
-            process.env.JWT_ACCESS_KEY,
-            {
-                expiresIn: "3d"
-            }
-        );
-    },
-
-    generateRefreshToken(user) {
-        return jwt.sign(
-            {
-                id: user.ID_User,
-                role: user.ID_Role,
-            }, 
-            process.env.JWT_REFRESH_KEY,
-            {
-                expiresIn: "365d"
-            }
-        );
-     },
-
     async login(req, res) {
         try {
             if (!req.body.email || !req.body.password)
                 return res.status(500).json({
+                    error: true,
                     message: 'Missing required field'
                 })
 
@@ -84,6 +89,7 @@ const userController = {
 
             if (!user)
                 return res.status(500).json({
+                    error: true,
                     message: 'Wrong username or password'
                 })
 
@@ -94,8 +100,8 @@ const userController = {
 
             if (validPassword)
             {
-                const accessToken = userController.generateAccessToken(user);
-                const refreshToken = userController.generateRefreshToken(user);
+                const accessToken = authController.generateAccessToken(user);
+                const refreshToken = authController.generateRefreshToken(user);
                 res.cookie("accessToken", accessToken, {
                     httpOnly: true,
                 });
@@ -103,12 +109,14 @@ const userController = {
                     httpOnly: true,
                 });
                 return res.status(200).json({
+                    error: false,
                     message: 'Login Successfully',
                     user: user,
                 })
             }
             else
                 return res.status(500).json({
+                    error: true,
                     message: 'Wrong username or password'
                 })
         } catch (error) {
@@ -118,16 +126,22 @@ const userController = {
 
     async refreshToken(req, res) {
         const refreshToken = req.cookies.refreshToken;
-        if (!refreshToken) return res.status(401).json("Token is invalid");
+        if (!refreshToken) return res.status(401).json({
+            error: true,
+            message: 'Please login to continue'
+        });
         jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
             if (err) {
-                return res.status(403).json("Token is invalid");
+                return res.status(403).json({
+                    error: true,
+                    message: 'Token is invalid'
+                });
             }
-            const newAccessToken = userController.generateAccessToken({
+            const newAccessToken = authController.generateAccessToken({
                 ID_User: user.id,
                 ID_Role: user.role
             });
-            const newRefreshToken = userController.generateAccessToken({
+            const newRefreshToken = authController.generateAccessToken({
                 ID_User: user.id,
                 ID_Role: user.role
             });
@@ -137,7 +151,10 @@ const userController = {
             res.cookie("refreshToken", newRefreshToken, {
                 httpOnly: true,
             });
-            return res.status(200).json("Refresh Token Successfully");
+            return res.status(200).json({
+                error: false,
+                message: 'Refresh token successfully'
+            });
         })
     },
 
@@ -145,9 +162,10 @@ const userController = {
         res.clearCookie("accessToken");
         res.clearCookie("refreshToken");
         return res.status(200).json({
+            error: false,
             message: 'Logout Successfully'
         })
     },
 }
 
-export default userController;
+export default authController;

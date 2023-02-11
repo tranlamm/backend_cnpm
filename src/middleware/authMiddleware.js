@@ -6,14 +6,20 @@ const authMiddleware = {
         if (accessToken) {
             jwt.verify(accessToken, process.env.JWT_ACCESS_KEY, (err, user) => {
                 if (err) {
-                    return res.status(403).json("Token is invalid");
+                    return res.status(403).json({
+                        error: true,
+                        message: 'Token is invalid'
+                    });
                 }
                 req.user = user;
                 next();
             })
         }
         else {
-            return res.status(401).json("Please login to continue");
+            return res.status(401).json({
+                error: true,
+                message: 'Please login to continue'
+            });
         }
     },
 
@@ -23,7 +29,10 @@ const authMiddleware = {
                 next();
             }
             else {
-                return res.status(403).json("Token is invalid");
+                return res.status(403).json({
+                    error: true,
+                    message: 'You are not authorized to perform this operation'
+                });
             }
         })
     },
@@ -34,7 +43,10 @@ const authMiddleware = {
                 next();
             }
             else {
-                return res.status(403).json("Token is invalid");
+                return res.status(403).json({
+                    error: true,
+                    message: 'You are not authorized to perform this operation'
+                });
             }
         })
     }

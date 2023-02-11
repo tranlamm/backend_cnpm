@@ -1,5 +1,5 @@
-import userRouter from "./userRoute.js";
+import authRouter from "./authRouter.js";
 
 export default (app) => {
-    app.use('/user', userRouter);
+    app.use('/auth', authRouter);
 };
