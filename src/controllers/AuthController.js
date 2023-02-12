@@ -34,13 +34,13 @@ const authController = {
         try {
             if (!req.body.fullname || !req.body.email || !req.body.password || !req.body.phone_number)
                 return res.status(500).json({
-                    error: true,
+                    isError: true,
                     message: 'Missing required field'
                 })
             
             if (!emailValidator.validate(req.body.email))
                 return res.status(500).json({
-                    error: true,
+                    isError: true,
                     message: 'Email is invalid'
                 })
 
@@ -50,7 +50,7 @@ const authController = {
 
             if (dbUser)
                 return res.status(500).json({
-                    error: true,
+                    isError: true,
                     message: 'Email is already existed'
                 })
 
@@ -67,12 +67,12 @@ const authController = {
             })
 
             return res.status(200).json({
-                error: false,
+                isError: false,
                 user,
                 message: 'Register Successfully'
             });
         } catch (error) {
-            return res.status(500).json(error);
+            return res.status(500).json({isError:true});
         }
     },
 
@@ -80,7 +80,7 @@ const authController = {
         try {
             if (!req.body.email || !req.body.password)
                 return res.status(500).json({
-                    error: true,
+                    isError: true,
                     message: 'Missing required field'
                 })
 
@@ -90,7 +90,7 @@ const authController = {
 
             if (!user)
                 return res.status(500).json({
-                    error: true,
+                    isError: true,
                     message: 'Wrong username or password'
                 })
 
@@ -110,31 +110,31 @@ const authController = {
                     httpOnly: true,
                 });
                 return res.status(200).json({
-                    error: false,
+                    isError: false,
                     message: 'Login Successfully',
                     user: user,
                 })
             }
             else
                 return res.status(500).json({
-                    error: true,
+                    isError: true,
                     message: 'Wrong username or password'
                 })
         } catch (error) {
-            return res.status(500).json(error);
+            return res.status(500).json({isError:true});
         }
     },
 
     async refreshToken(req, res) {
         const refreshToken = req.cookies.refreshToken;
         if (!refreshToken) return res.status(401).json({
-            error: true,
+            isError: true,
             message: 'Please login to continue'
         });
         jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
             if (err) {
                 return res.status(403).json({
-                    error: true,
+                    isError: true,
                     message: 'Token is invalid'
                 });
             }
@@ -153,7 +153,7 @@ const authController = {
                 httpOnly: true,
             });
             return res.status(200).json({
-                error: false,
+                isError: false,
                 message: 'Refresh token successfully'
             });
         })
@@ -163,7 +163,7 @@ const authController = {
         res.clearCookie("accessToken");
         res.clearCookie("refreshToken");
         return res.status(200).json({
-            error: false,
+            isError: false,
             message: 'Logout Successfully'
         })
     },

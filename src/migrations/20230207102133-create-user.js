@@ -32,10 +32,6 @@ module.exports = {
       avatar: {
         type: Sequelize.TEXT('medium')
       },
-      del_yn: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
       address: {
         type: Sequelize.STRING
       },
