@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         through: "carts",
         foreignKey: "ID_User"
       });
+      User.belongsToMany(models.Voucher, {
+        through: "voucher_users",
+        foreignKey: "ID_User"
+      });
     }
   }
   User.init({
@@ -33,7 +37,6 @@ module.exports = (sequelize, DataTypes) => {
     phone_number: DataTypes.STRING(45),
     address: DataTypes.STRING(45),
     password: DataTypes.STRING(45),
-    total_order: DataTypes.INTEGER,
     avatar: DataTypes.TEXT('medium'),
   }, {
     sequelize,

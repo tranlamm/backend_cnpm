@@ -1,5 +1,6 @@
 import db from '../models/index.js';
 import cartController from './CartController.js';
+import voucherController from './VoucherController.js';
 
 const orderController = {
     async getOrder(req, res) {
@@ -36,6 +37,22 @@ const orderController = {
             products.forEach((product) => {
                 total += (product.price - product.discount) * product.carts.dataValues.quantity;
             })
+
+            // Add voucher
+            if (req.body.ID_Voucher) {
+                const isValid = await voucherController.handleValidVoucher(req.body.ID_Voucher, req.user.id);
+                if (isValid)
+                {
+                    total -= isValid.value;
+                    if (total < 0) total = 0;
+                }
+                else {
+                    return res.status(500).json({
+                        isError: true,
+                        message: 'Voucher is invalid'
+                    })
+                }
+            }
 
             const order = await db.Order.create({
                 ID_User: req.user.id,
