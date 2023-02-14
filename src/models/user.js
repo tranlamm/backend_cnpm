@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         through: "voucher_users",
         foreignKey: "ID_User"
       });
+      User.hasMany(models.Post, {foreignKey: "ID_User"});
+      User.hasMany(models.Comment, {foreignKey: "ID_User"});
     }
   }
   User.init({
