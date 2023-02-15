@@ -14,12 +14,10 @@ module.exports = {
     */
     await queryInterface.bulkInsert('Vouchers', [
       {
-        ID_Voucher: 1,
         name: 'voucher 1',
         value: 100
       },
       {
-        ID_Voucher: 2,
         name: 'voucher 2',
         value: 200
       }

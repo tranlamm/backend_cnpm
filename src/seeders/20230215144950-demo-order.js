@@ -15,15 +15,15 @@ module.exports = {
     await queryInterface.bulkInsert('Orders', [
       {
         ID_Order: 1,
-        ID_User: 1,
+        ID_User: 2,
         total_money: 10000,
-        status : 'PENDING'
+        status : 'pending'
       },
       {
         ID_Order: 2,
-        ID_User: 1,
+        ID_User: 2,
         total_money: 10000,
-        status : 'PENDING'
+        status : 'pending'
       }
     ], {});
 

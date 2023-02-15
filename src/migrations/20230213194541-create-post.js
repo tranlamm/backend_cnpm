@@ -12,7 +12,7 @@ module.exports = {
       ID_User: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Users",
+          model: "users",
           key: "ID_User"
         } 
       },
@@ -29,11 +29,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });

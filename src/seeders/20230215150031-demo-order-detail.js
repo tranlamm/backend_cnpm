@@ -15,16 +15,19 @@ module.exports = {
 
     await queryInterface.bulkInsert('Order_Details', [
       {
-        ID_OD: 1,
         ID_Order: 1,
         ID_Product: 1,
-        quantity : 1
+        quantity : 10
       },
       {
-        ID_OD: 1,
         ID_Order: 1,
         ID_Product: 2,
-        quantity : 1
+        quantity : 20
+      },
+      {
+        ID_Order: 2,
+        ID_Product: 3,
+        quantity : 20
       }
     ], {});
   },

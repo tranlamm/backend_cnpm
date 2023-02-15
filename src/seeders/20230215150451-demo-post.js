@@ -14,16 +14,14 @@ module.exports = {
     */
     await queryInterface.bulkInsert('Posts', [
       {
-        ID_Post: 1,
-        ID_User: 1,
+        ID_User: 2,
         title: 'Title 1',
         content: 'This is content of post 1',
         likes: 120,
         status: 'APPROVE'
       },
       {
-        ID_Post: 2,
-        ID_User: 1,
+        ID_User: 2,
         title: 'Title 2',
         content: 'This is content of post 2',
         likes: 120,
