@@ -21,10 +21,12 @@ module.exports = {
         type: Sequelize.TEXT('medium')
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('Now()')
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('Now()')
       }
     });
   },

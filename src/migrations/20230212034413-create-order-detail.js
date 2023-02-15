@@ -29,10 +29,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('Now()')
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('Now()')
       }
     });
   },

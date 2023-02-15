@@ -15,10 +15,12 @@ module.exports = {
         allowNull: false
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('Now()')
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('Now()')
       }
     });
   },
