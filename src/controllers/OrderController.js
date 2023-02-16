@@ -35,7 +35,14 @@ const orderController = {
                 
             let total = 0;
             products.forEach((product) => {
-                total += (product.price - product.discount) * product.carts.dataValues.quantity;
+                if (product.carts.dataValues.quantity > product.quantity) {
+                    return res.status(500).json({
+                        isError: true,
+                        message: 'Not enough product in store'
+                    })
+                }
+                else
+                    total += (product.price - product.discount) * product.carts.dataValues.quantity;
             })
 
             // Add voucher
@@ -65,6 +72,13 @@ const orderController = {
                     ID_Product: product.ID_Product,
                     quantity: product.carts.dataValues.quantity
                 })
+
+                await db.Product.update({
+                    quantity: product.quantity - product.carts.dataValues.quantity
+                },
+                {
+                    where: {ID_Product: product.ID_Product}
+                });
             })
 
             cartController.setEmptyCart(req.user.id);
