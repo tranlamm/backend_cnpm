@@ -7,3 +7,11 @@
 - Step 7: run "npm start" and enjoy the api
 
 (Make sure you have installed git, npm, xampp or mysql, ...)
+
+After run backend_cnpm.sql we will have:
+- Account admin: 
+email: admin@gmail.com
+password: admin
+- Account user:
+email: tester@gmail.com
+password: tester

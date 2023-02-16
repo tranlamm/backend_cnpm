@@ -29,6 +29,16 @@ const cartController = {
                     message: 'Missing required field'
                 })
 
+            const product = await db.Product.findOne({
+                where: {ID_Product: req.body.ID_Product}
+            });
+
+            if (product.quantity < req.body.quantity)
+                return res.status(500).json({
+                    isError: true,
+                    message: 'Not enough product in store'
+                })
+
             const cartItem = await db.Cart.findOne({
                 where: {
                     [Op.and]: [

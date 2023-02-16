@@ -181,7 +181,7 @@ const productController = {
                     message: 'Missing required field'
                 })
 
-            ids = req.body.ID_Product;
+            const ids = req.body.ID_Product;
             ids.forEach(async (id) => {
                 await db.Product.destroy({ where: {ID_Product: id}});
             })
