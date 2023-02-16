@@ -119,6 +119,7 @@ const productController = {
                 title: req.body.title,
                 price: req.body.price,
                 discount: req.body.discount,
+                quantity: req.body.quantity,
                 description: req.body.description
             });
 
@@ -144,7 +145,7 @@ const productController = {
 
     async updateProduct(req, res) {
         try {
-            if (!req.body.ID_Product || !req.body.ID_Category || !req.body.title || !req.body.price)
+            if (!req.body.ID_Product)
                 return res.status(500).json({
                     isError: true,
                     message: 'Missing required field'
@@ -155,6 +156,7 @@ const productController = {
                 title: req.body.title,
                 price: req.body.price,
                 discount: req.body.discount,
+                quantity: req.body.quantity,
                 description: req.body.description
             },
             {
@@ -179,8 +181,11 @@ const productController = {
                     message: 'Missing required field'
                 })
 
-            await db.Product.destroy({ where: {ID_Product: req.body.ID_Product}});
-
+            ids = req.body.ID_Product;
+            ids.forEach(async (id) => {
+                await db.Product.destroy({ where: {ID_Product: id}});
+            })
+            
             return res.status(200).json({
                 isError: false,
                 message: 'Delete product successfully'
