@@ -12,7 +12,10 @@ const forumController = {
                         model: db.User,
                     },
                     {
-                        model: db.Comment
+                        model: db.Comment,
+                        include: [
+                            {model: db.Comment,}
+                        ]
                     }
                 ]
             });
@@ -69,9 +72,36 @@ const forumController = {
         }
     },
 
+    async createComment(req, res) {
+        try {
+            if (!req.body.content || !(req.body.ID_Post ^ req.body.ID_Parent_cmt)) { //content != null, ID_Post/ID_Parent_cmt need exact 1 != null
+                return res.status(500).json({
+                    isError: true,
+                    message: 'Invalid Input'
+                })
+            } else {
+                let comment = await db.Comment.create({
+                    ID_User: req.user.id,
+                    content: req.body.content,
+                    ID_Post: req.body.ID_Post || null,
+                    ID_Parent_cmt: req.body.ID_Parent_cmt || null,
+                    likes: 0,
+                })
+
+                return res.status(200).json({
+                    isError: false,
+                    comment,
+                    message: "Success"
+                })
+            }
+        } catch (error) {
+            return res.status(500).json({isError:true});
+        }
+    },
+
     async updatePost(req, res) {
         try {
-            if (!req.body.title || !req.body.content) {
+            if (!req.body.ID_Post ||!req.body.title || !req.body.content) {
                 return res.status(500).json({
                     isError: true,
                     message: 'Missing required field'
@@ -80,7 +110,6 @@ const forumController = {
                 let post = await db.Post.findOne({
                     where: {ID_Post: req.body.ID_Post}
                 })
-                console.log(req.user.id, post.ID_User);
                 if (req.user.id == post.ID_User) {
                     post = await db.Post.update(
                     {
@@ -96,6 +125,38 @@ const forumController = {
                 return res.status(200).json({
                     isError: false,
                     message: "Post is waiting for check again!"
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({isError:true});
+        }
+    },
+
+    async updateComment(req, res) {
+        try {
+            if (!req.body.ID_Comment || !req.body.content) {
+                return res.status(500).json({
+                    isError: true,
+                    message: 'Missing required field'
+                })
+            } else {
+                let comment = await db.Comment.findOne({
+                    where: {ID_Comment: req.body.ID_Comment}
+                })
+                if (req.user.id == comment.ID_User) {
+                    comment = await db.Comment.update(
+                    {
+                        content: req.body.content,
+                    },
+                    {
+                        where: {ID_Comment: req.body.ID_Comment},
+                    })
+                }
+
+                return res.status(200).json({
+                    isError: false,
+                    message: "Success"
                 })
             }
         } catch (error) {
@@ -127,6 +188,36 @@ const forumController = {
                 return res.status(200).json({
                     isError: false,
                     message: 'Delete Post successfully'
+                })
+            }
+        } catch (error) {
+            return res.status(500).json({isError:true});
+        }
+    },
+
+    async deleteComment (req, res) {
+        try {
+            if (!req.body.ID_Comment) {
+                return res.status(500).json({
+                    isError: true,
+                    message: 'Missing required field'
+                })
+            } else {
+                let post = await db.Comment.findOne({
+                    where: {ID_Comment: req.body.ID_Comment}
+                })
+
+                if (req.user.id == post.ID_User) {    
+                    await db.Comment.destroy({
+                        where: {
+                            ID_Comment: req.body.ID_Comment,
+                        }
+                    })
+                }
+
+                return res.status(200).json({
+                    isError: false,
+                    message: 'Delete Comment successfully'
                 })
             }
         } catch (error) {
@@ -197,6 +288,30 @@ const forumController = {
                 return res.status(200).json({
                     isError: false,
                     message: 'Delete Post successfully'
+                })
+            }
+        } catch (error) {
+            return res.status(500).json({isError:true});
+        }
+    },
+
+    async adminDeleteComment (req, res) {
+        try {
+            if (!req.body.ID_Comment) {
+                return res.status(500).json({
+                    isError: true,
+                    message: 'Missing required field'
+                })
+            } else {
+                await db.Post.destroy({
+                    where: {
+                        ID_Comment: req.body.ID_Comment,
+                    }
+                })
+
+                return res.status(200).json({
+                    isError: false,
+                    message: 'Delete Comment successfully'
                 })
             }
         } catch (error) {
