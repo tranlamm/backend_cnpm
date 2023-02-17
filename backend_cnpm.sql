@@ -55,3 +55,19 @@ VALUES (1, '4', '2', current_timestamp(), current_timestamp()),
 (2, '3', '2', current_timestamp(), current_timestamp()),
 (3, '2', '2', current_timestamp(), current_timestamp()),
 (4, '1', '2', current_timestamp(), current_timestamp());
+
+INSERT INTO `images` (`ID_Image`, `ID_Product`, `content`, `createdAt`, `updatedAt`) 
+VALUES 
+('1', '1', 'https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.21a/dw/image/v2/BBDL_PRD/on/demandware.static/-/Sites-master-catalog/default/dw6f601100/hires/026634409.jpg?sh=471&yocs=o_s_', current_timestamp(), current_timestamp()),
+('2', '2', 'https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.21a/dw/image/v2/BBDL_PRD/on/demandware.static/-/Sites-master-catalog/default/dw7c8ce3f6/hires/026633943.jpg?sh=471&yocs=o_s_', current_timestamp(), current_timestamp()),
+('3', '3', 'https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.21a/dw/image/v2/BBDL_PRD/on/demandware.static/-/Sites-master-catalog/default/dwcda2cc8e/hires/026588599.jpg?sh=471&yocs=o_s_', current_timestamp(), current_timestamp()),
+('4', '4', 'https://r2d.com.vn/wp-content/uploads/2020/07/Scented-Wax-Melts-Cinnamon-Orange-scaled.jpg', current_timestamp(), current_timestamp()),
+('5', '5', 'https://r2d.com.vn/wp-content/uploads/2020/07/Sap-thom-tinh-dau-sa-chanh.jpg', current_timestamp(), current_timestamp()),
+('6', '6', 'https://m.media-amazon.com/images/I/81fpDEassPL._SL1500_.jpg', current_timestamp(), current_timestamp()),
+('7', '7', 'https://m.media-amazon.com/images/I/71HleyFIsAL.jpg', current_timestamp(), current_timestamp()),
+('8', '8', 'https://post.healthline.com/wp-content/uploads/2021/05/1253543-5-26-21-The-18-Best-Essential-Oils-for-Anxiety-732x549-Feature.jpg', current_timestamp(), current_timestamp()),
+('9', '9', 'https://cdn.shopify.com/s/files/1/1011/1722/articles/a-guide-to-essential-oil-substitutes-banner.jpg?v=1650448896', current_timestamp(), current_timestamp()),
+('10', '10', 'https://images.ctfassets.net/x0wnv07j8mtt/skuPrimaryImage3575/933bc4141110956d44d57cddaeefb089/Lavender_15ml_US_Website_2022.png?q=75&fm=jpg&w=1080&h=1080', current_timestamp(), current_timestamp()),
+('11', '11', 'https://cf.shopee.vn/file/a66110b350a2dec087d11fa735bd6c5c', current_timestamp(), current_timestamp()),
+('12', '11', 'https://cf.shopee.vn/file/a955a7f887d65b29904bd84537b4cfe6', current_timestamp(), current_timestamp()),
+('13', '11', 'https://cf.shopee.vn/file/aa40193241b9c2de341b5a78c6d508f2"', current_timestamp(), current_timestamp());
