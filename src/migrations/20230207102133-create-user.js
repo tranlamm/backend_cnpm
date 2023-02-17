@@ -29,9 +29,6 @@ module.exports = {
       phone_number: {
         type: Sequelize.STRING
       },
-      avatar: {
-        type: Sequelize.TEXT('medium')
-      },
       address: {
         type: Sequelize.STRING
       },
