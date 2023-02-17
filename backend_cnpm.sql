@@ -24,7 +24,7 @@ VALUES
 ('7', '2', 'Tinh dầu thiên nhiên Noison 10ml', '500000', '10000', '1000', 'Nến thơm hình lục giác siêu đánh yêu, sang trọng dùng trang trí nhà cửa', current_timestamp(), current_timestamp()),
 ('8', '2', 'Tinh dầu thiên nhiên Bath and body shop', '120000', '10000', '1000', 'Nến thơm hình lục giác siêu đánh yêu, sang trọng dùng trang trí nhà cửa', current_timestamp(), current_timestamp()),
 ('9', '2', 'Tinh dầu thiên nhiên Hermes', '240000', '10000', '1000', 'Nến thơm hình lục giác siêu đánh yêu, sang trọng dùng trang trí nhà cửa', current_timestamp(), current_timestamp()),
-('10', '2', 'Tinh dầu thiên nhiên Louis vuitton', '250000', '10000', '1000', 'Sản phẩm nhiều mẫu mã đa dạng, đẹp mắt và thắp sáng tốt, mùi hương nhẹ dễ chịu.', current_timestamp(), current_timestamp());
+('10', '2', 'Tinh dầu thiên nhiên Louis vuitton', '250000', '10000', '1000', 'Sản phẩm nhiều mẫu mã đa dạng, đẹp mắt và thắp sáng tốt, mùi hương nhẹ dễ chịu.', current_timestamp(), current_timestamp()),
 ('11', '1', '(AUTH) Nến Thơm 1 Bấc Bath & Body Works - Nhiều Mùi Thơm & Hot 198g MH Store', '200000', '10000', '1000', 'Sản phẩm nhiều mẫu mã đa dạng, đẹp mắt và thắp sáng tốt, mùi hương nhẹ dễ chịu.', current_timestamp(), current_timestamp()),
 ('12', '1', '[NẾN THƠM] 100 gr Sáp gel trong suốt làm nến trang trí tự làm nến tại nhà', '300000', '20000', '1000', 'Sản phẩm nhiều mẫu mã đa dạng, đẹp mắt và thắp sáng tốt, mùi hương nhẹ dễ chịu. ', current_timestamp(), current_timestamp()),
 ('13', '1', 'Nến Thơm Và Tinh Dầu Khuếch Tán Dành Cho Nữ Dịp Sinh Nhật, Valentine, 8/3, 20/10, Kỉ Niệm', '200000', '10000', '1000', 'Sản phẩm nhiều mẫu mã đa dạng, đẹp mắt và thắp sáng tốt, mùi hương nhẹ dễ chịu.', current_timestamp(), current_timestamp()),
@@ -36,13 +36,13 @@ Các mùi: Bạc Hà, Sả chanh, Rosemary, Bạch đàn, Hoa Hồng, ...', curr
 ('18', '2', 'Tinh dầu Mộc Nhiên nguyên chất có kiểm định, tinh dầu sả chanh,bạc hà', '120000', '10000', '1000', 'Sản phẩm nhiều mẫu mã đa dạng, đẹp mắt và thắp sáng tốt, mùi hương nhẹ dễ chịu.', current_timestamp(), current_timestamp()),
 ('19', '2', 'Tinh dầu thơm phòng phát sáng ban đêm ', '240000', '10000', '1000', 'Sản phẩm nhiều mẫu mã đa dạng, đẹp mắt và thắp sáng tốt, mùi hương nhẹ dễ chịu.', current_timestamp(), current_timestamp()),
 ('20', '2', 'Tinh dầu nguyên chất nhập khẩu Ấn Độ,', '250000', '10000', '1000', 'Tinh dầu thơm chiết suất từ thiên nhiên dùng để xông phòng. Tạo cảm giác sảng khoái, hưng phấn, thơm mát và êm ái cho không gian sống và giấc ngủ của bạn. Tinh dầu được dùng với đèn xông tinh dầu hoặc máy khuếch tán tinh dầu sẽ cho hiệu quả cao như vào Spa. 
-Các mùi: Bạc Hà, Sả chanh, Rosemary, Bạch đàn, Hoa Hồng, ...', current_timestamp(), current_timestamp());
+Các mùi: Bạc Hà, Sả chanh, Rosemary, Bạch đàn, Hoa Hồng, ...', current_timestamp(), current_timestamp()),
 ('21', '1', 'Nến tealight nhỏ 1h bơ thực vật 100 viên, nến bơ Đài Loan, nến bơ không khói, không muội', '200000', '10000', '1000', 'Tinh dầu thơm chiết suất từ thiên nhiên dùng để xông phòng. Tạo cảm giác sảng khoái, hưng phấn, thơm mát và êm ái cho không gian sống và giấc ngủ của bạn. Tinh dầu được dùng với đèn xông tinh dầu hoặc máy khuếch tán tinh dầu sẽ cho hiệu quả cao như vào Spa. 
 Các mùi: Bạc Hà, Sả chanh, Rosemary, Bạch đàn, Hoa Hồng, ...', current_timestamp(), current_timestamp()),
 ('22', '1', 'Nến thơm phòng cao cấp 4 mùa SWEET HOME làm từ sáp nguyên chất không khói hương thơm tự nhiên giúp decor phòng', '300000', '20000', '1000', 'Tinh dầu thơm chiết suất từ thiên nhiên dùng để xông phòng. Tạo cảm giác sảng khoái, hưng phấn, thơm mát và êm ái cho không gian sống và giấc ngủ của bạn. Tinh dầu được dùng với đèn xông tinh dầu hoặc máy khuếch tán tinh dầu sẽ cho hiệu quả cao như vào Spa. 
 Các mùi: Bạc Hà, Sả chanh, Rosemary, Bạch đàn, Hoa Hồng, ...', current_timestamp(), current_timestamp()),
 ('23', '1', 'Nến thơm hình lục giác sang trọng dùng trang trí nhà cửa. Nến decor phong cách Hàn Quốc', '200000', '10000', '1000', 'Tinh dầu thơm chiết suất từ thiên nhiên dùng để xông phòng. Tạo cảm giác sảng khoái, hưng phấn, thơm mát và êm ái cho không gian sống và giấc ngủ của bạn. Tinh dầu được dùng với đèn xông tinh dầu hoặc máy khuếch tán tinh dầu sẽ cho hiệu quả cao như vào Spa. 
-Các mùi: Bạc Hà, Sả chanh, Rosemary, Bạch đàn, Hoa Hồng, ...', current_timestamp(), current_timestamp()),
+Các mùi: Bạc Hà, Sả chanh, Rosemary, Bạch đàn, Hoa Hồng, ...', current_timestamp(), current_timestamp());
 
 INSERT INTO `vouchers` (`ID_Voucher`, `name`, `value`, `createdAt`, `updatedAt`) 
 VALUES ('1', 'Voucher khuyến mãi nhân dịp năm mới 2023', '20000', current_timestamp(), current_timestamp()),
