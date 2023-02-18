@@ -123,13 +123,14 @@ const productController = {
                 description: req.body.description
             });
 
-            if (req.body.image) {
-                req.body.image.forEach(async (img) => {
+            if (req.files && req.files.length > 0) {
+                for (let i = 0; i < req.files.length; ++i)
+                {
                     await db.Image.create({
                         ID_Product: product.ID_Product,
-                        content: img
+                        content: 'http://localhost:8000/' + req.files[i].filename
                     })
-                }) 
+                }
             }
 
             return res.status(200).json({
