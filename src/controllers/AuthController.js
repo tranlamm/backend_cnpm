@@ -112,6 +112,7 @@ const authController = {
                     isError: false,
                     message: 'Login Successfully',
                     user: user,
+                    accessToken,
                 })
             }
             else
