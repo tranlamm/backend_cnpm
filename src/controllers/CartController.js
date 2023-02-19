@@ -19,10 +19,21 @@ const cartController = {
                 sum_quantity += product.carts.dataValues.quantity;
             });
 
+            const FormatProducts = Products.map((product) => {
+                const {quantity, carts, ...newproduct} = product;
+                const tmp = newproduct.dataValues;
+                delete tmp.carts;
+                return {
+                    ...tmp,
+                    stock: quantity,
+                    quantity: carts.dataValues.quantity,
+                }
+            });
+
             return res.status(200).json({
                 isError: false,
                 sum_quantity,
-                Products,
+                Products: FormatProducts,
             });
         } catch (error) {
             return res.status(500).json({isError:true});
