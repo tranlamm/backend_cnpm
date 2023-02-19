@@ -7,14 +7,22 @@ const cartController = {
             const { Products } = await db.User.findOne({
                 where: {ID_User: req.user.id},
                 attributes: ['ID_User'],
-                include: {
+                include: [{
                     model: db.Product,
-                    through: { attributes: ['quantity'] } 
-                }
+                    through: { attributes: ['quantity'] },
+                    include: [db.Image]
+                }]
             })
+
+            let sum_quantity = 0;
+            Products.forEach((product) => {
+                sum_quantity += product.carts.dataValues.quantity;
+            });
+
             return res.status(200).json({
                 isError: false,
-                Products
+                sum_quantity,
+                Products,
             });
         } catch (error) {
             return res.status(500).json({isError:true});

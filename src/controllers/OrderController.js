@@ -3,6 +3,21 @@ import cartController from './CartController.js';
 import voucherController from './VoucherController.js';
 
 const orderController = {
+    async getAllOrder(req, res) {
+        try {
+            const Orders = await db.Order.findAll({
+                include: [db.User, db.Product]
+            });
+
+            return res.status(200).json({
+                isError: false,
+                Orders
+            });
+        } catch (error) {
+            return res.status(500).json({isError:true});
+        }
+    },
+
     async getOrder(req, res) {
         try {
             const { Orders } = await db.User.findOne({
