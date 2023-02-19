@@ -104,10 +104,10 @@ const productController = {
                     isError: true,
                     message: 'Missing required field'
                 })
-            
+
             if (req.body.discount)
             {
-                if (req.body.discount > req.body.price)
+                if (parseInt(req.body.discount) > parseInt(req.body.price))
                     return res.status(500).json({
                         isError: true,
                         message: 'Price is invalid'
