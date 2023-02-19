@@ -86,15 +86,19 @@ const cartController = {
                     message: 'Missing required field'
                 })
 
-            await db.Cart.destroy({ 
-                where: {
-                    [Op.and]: [
-                        {ID_User: req.user.id},
-                        {ID_Product: req.body.ID_Product}
-                    ]
-                }
-            });
+            const ids = req.body.ID_Product;
 
+            ids.forEach(async (id) => {
+                await db.Cart.destroy({ 
+                    where: {
+                        [Op.and]: [
+                            {ID_User: req.user.id},
+                            {ID_Product: id}
+                        ]
+                    }
+                });
+            })
+            
             return res.status(200).json({
                 isError: false,
                 message: 'Delete product from cart successfully'
