@@ -6,8 +6,24 @@ const orderController = {
     async getAllOrder(req, res) {
         try {
             const Orders = await db.Order.findAll({
-                include: [db.User, db.Product]
+                include: [{
+                    model: db.User
+                }, {
+                    model: db.Product,
+                    through: { attributes: ['quantity'] },
+                }]
             });
+
+            Orders.forEach((order) => {
+                const products = order.dataValues.Products;
+                products.forEach((product) => {
+                    const stock = product.dataValues.quantity;
+                    const quantity = product.dataValues.order_details.dataValues.quantity;
+                    product.dataValues.quantity = quantity;
+                    product.dataValues.stock = stock;
+                    delete product.dataValues.order_details;
+                })
+            })
 
             return res.status(200).json({
                 isError: false,
@@ -25,10 +41,24 @@ const orderController = {
                 attributes: ['ID_User'],
                 include: [{
                     model: db.Order,
-                    include: [db.Product]
+                    include: [{
+                        model: db.Product,
+                        through: { attributes: ['quantity'] },
+                    }]
                 }]
             });
             
+            Orders.forEach((order) => {
+                const products = order.dataValues.Products;
+                products.forEach((product) => {
+                    const stock = product.dataValues.quantity;
+                    const quantity = product.dataValues.order_details.dataValues.quantity;
+                    product.dataValues.quantity = quantity;
+                    product.dataValues.stock = stock;
+                    delete product.dataValues.order_details;
+                });
+            })
+
             return res.status(200).json({
                 isError: false,
                 Orders
